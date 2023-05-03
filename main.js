@@ -16,7 +16,9 @@ else
     productList=[]
 }
 function addProduct(){ 
-    if (addBtn.innerHTML=='Add Product'){ //add Mode
+
+    if (validName() && validPrice() && validateDesc()) {
+        if (addBtn.innerHTML=='Add Product'){ //add Mode
             var product ={
         Name:ProductName.value,
         Price:ProductPrice.value,
@@ -31,6 +33,7 @@ function addProduct(){
   }
     localStorage.setItem("List",JSON.stringify(productList))
     DisplayData ();
+    }
 
 }
 function DisplayData (){
@@ -101,6 +104,7 @@ function getProductInfo(i){
     ProductCategory.value=productList[i].Category
     ProductDescription.value=productList[i].Description
     addBtn.innerHTML="Update";
+   
     
 }
 
@@ -112,5 +116,48 @@ function updateProduct(){
         Description:ProductDescription.value
     }
     productList[currentIndex]=product;
+    addBtn.innerHTML="Add Product";
+    cleardata();
 }
 
+function validName() {
+  var regex = /^[A-z][a-z]{3,6}[0-9]?$/;
+var validTest = false;
+  if (regex.test(ProductName.value)) {
+    document.getElementById("alertName").style.display ="none"
+     validTest = true;
+  } else {
+    document.getElementById("alertName").style.display ="block"
+    validTest = false;
+  }
+  return validTest;
+}
+
+function validPrice() {
+    var regex = /^[1-9][0-9]{3,5}$/;
+    var validTest = false;
+
+    if (regex.test(ProductPrice.value)) {
+      document.getElementById("alertPrice").style.display ="none"
+       validTest = true;
+    } else {
+      document.getElementById("alertPrice").style.display ="block"
+      validTest = false;
+    }
+    return validTest;
+
+  }
+
+  function validateDesc() {
+    var regex=  /^[a-z]{3,400}$/;
+var validTest= false;
+    if (regex.test(ProductDescription.value)) {
+      document.getElementById("alertDesc").style.display = "none"
+      validTest =true;
+    }
+    else {
+      document.getElementById("alertDesc").style.display = "block"
+      validTest =false;
+    }
+    return validTest;
+  }

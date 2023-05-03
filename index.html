@@ -4,28 +4,32 @@
 <head>
 
     <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-
-
     <div class="container py-5 mb-5 bg-light">
-
-
-
-        
-
             <div class="mb-3">
 
                 <label for="ProductName">Product Name</label>
-                <input type="text" class="form-control" id="ProductName" >
+                <input type="text" class="form-control" id="ProductName" onblur="validName()"  >
+                <div class="alert alert-danger" id="alertName">
+                    <p>
+                        please enter valid name has first character is upperCase
+                    </p>
+                </div>
             </div>
 
             <div class="mb-3">
 
                 <label for="ProductPrice">Product Price</label>
-                <input type="number" class="form-control" id="ProductPrice">
+                <input type="number" class="form-control" id="ProductPrice" onblur="validPrice()">
+                <div class="alert alert-danger" id="alertPrice">
+                    <p>
+                        please enter valid price
+                    </p>
+                </div>
             </div>
 
             <div class="mb-3">
@@ -42,7 +46,10 @@
             <div class="mb-3">
 
                 <label for="ProductDescription">Product Description</label>
-                <textarea class="form-control" id="ProductDescription"></textarea>
+                <textarea class="form-control" id="ProductDescription" onblur="validateDesc()"></textarea>
+                <div class="alert alert-danger" id="alertDesc">
+                    please enter correct Description
+                </div>
             </div>
 
 
